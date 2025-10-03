@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serviços Policial — Alerta Cidadão</title>
+<link rel="stylesheet" href="servicos.css">
+<link rel="shortcut icon" href="https://images.seeklogo.com/logo-png/56/1/mascote-pm-amigo-legal-da-policia-militar-de-mg-logo-png_seeklogo-563130.png" type="image/x-icon">
+
+</head>
+<body>
+
+<header>
+  <h1>Alerta Cidadão — Polícia</h1>
+  <div>
+    <button onclick="voltarDashboard()">⬅ Voltar</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+  <a href="police.html">
+  <button>Voltar</button>
+</a>
+</header>
+
+<main>
+  <h2>Serviços da Polícia Militar</h2>
+  <div class="services-container">
+    <div class="service-card" onclick="abrirModal('boletim')">
+      <h3>Boletim de Ocorrência</h3>
+      <p>Registrar ocorrências e crimes denunciados.</p> 
+    </div>
+    <div class="service-card" onclick="abrirModal('veiculos')">
+      <h3>Consultas de Veículos</h3>
+      <p>Consultar situação de veículos e placas.</p>
+    </div>
+    <div class="service-card" onclick="abrirModal('delegacias')">
+      <h3>Contatos de Delegacias</h3>
+      <p>Telefones e endereços das delegacias locais.</p>
+    </div>
+    <div class="service-card" onclick="abrirModal('ocorrencias')">
+      <h3>Ocorrências Recentes</h3>
+      <p>Visualizar alertas e ocorrências recentes da cidade.</p>
+    </div>
+  </div>
+</main>
+
+
+<div id="modal" class="modal" onclick="clickForaModal(event)">
+  <div class="modal-content" id="modalContent">
+    <button class="close-btn" onclick="fecharModal()">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="servicos.js"></script>
+</body>
+</html>

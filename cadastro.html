@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro — Alerta Cidadão</title>
+<link rel="stylesheet" href="cadastro.css">
+<link rel="shortcut icon" href="https://images.seeklogo.com/logo-png/56/1/mascote-pm-amigo-legal-da-policia-militar-de-mg-logo-png_seeklogo-563130.png" type="image/x-icon">
+
+</head>
+<body>
+
+<div class="container">
+  <h2>Cadastro Alerta Cidadão</h2>
+
+  <div class="login-box">
+    <label for="userType">Escolha tipo de usuário:</label>
+    <select id="userType">
+      <option value="policia">Policial</option>
+    </select>
+
+    <input type="text" id="name" placeholder="Nome completo" required>
+    <input type="email" id="email" placeholder="Email" required>
+    <input type="password" id="password" placeholder="Senha" required>
+
+    <button class="btn btn-purple" id="btnCadastro">Concluir cadastro</button>
+    <a href="index.html"><button class="btn btn-outline">Login</button></a>
+
+    <p id="message" class="message"></p>
+  </div>
+</div>
+
+<script src="cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Policial — Alerta Cidadão</title>
+  <link rel="stylesheet" href="police.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="shortcut icon" href="https://images.seeklogo.com/logo-png/56/1/mascote-pm-amigo-legal-da-policia-militar-de-mg-logo-png_seeklogo-563130.png" type="image/x-icon">
+
+</head>
+<body>
+
+<header>
+  <h1>🚨 Alerta Cidadão — Painel Policial</h1>
+  <div class="header-controls">
+<a href="index.html">
+  <button>Voltar</button>
+</a>
+
+
+
+    <button class="btn small green" onclick="exportarCSV()" aria-label="Exportar alertas em CSV">📂 Exportar</button>
+    <button class="btn small danger" onclick="logout()" aria-label="Encerrar sessão">🚪 Sair</button>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="map-container">
+    <h3>🗺️ Localização — Patos de Minas</h3>
+    <div id="map" role="region" aria-label="Mapa de ocorrências"></div>
+
+    <div class="filters">
+      <button class="btn small filter" data-filter="Pânico">Pânico</button>
+      <button class="btn small filter" data-filter="Acidente">Acidente</button>
+      <button class="btn small filter" data-filter="Suspeito">Suspeito</button>
+      <button class="btn small filter" data-filter="Médica">Médica</button>
+    </div>
+  </section>
+
+
+  <aside class="alerts-list">
+    <h3>📋 Alertas Recebidos</h3>
+    <div id="dashboard"></div>
+
+    <h4>📊 Estatísticas rápidas</h4>
+    <div id="stats"></div>
+  </aside>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="police.js"></script>
+</body>
+</html>

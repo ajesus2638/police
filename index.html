@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alerta Cidadão</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="shortcut icon" href="https://images.seeklogo.com/logo-png/56/1/mascote-pm-amigo-legal-da-policia-militar-de-mg-logo-png_seeklogo-563130.png" type="image/x-icon">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-top">
+            <nav class="top-nav">
+                <ul>
+                    <li><a href="https://www.policiamilitar.mg.gov.br/">Pm</a></li>
+                    <li><a href="https://www.patosdeminas.mg.gov.br/portal/noticias/0/3/1365/base-de-seguranca-comunitaria-da-86-cia-da-pm-tem-saldo-positivo">Bases Comunitarias</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" class="theme-toggle-button">
+                    <span class="light-mode-icon">☀️</span>
+                    <span class="dark-mode-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-bottom">
+          
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="servicos.html">Serviços</a></li>
+                    <li><a href="https://www.patosdeminas.mg.gov.br/">Endereços</a></li>
+                
+            
+                </ul>
+   
+    </header>
+
+
+<div id="loginScreen" class="login-box">
+  <h2>Bem-vindo ao Alerta Cidadão</h2>
+  <p>Escolha seu tipo de login:</p>
+  <button class="btn purple" onclick="enterUser()">Usuário</button>
+  <button class="btn blue" onclick="showPoliceLogin()">Polícia</button>
+  <a href="cadastro.html"><button class="btn 2">Cadastrar-se</button></a>
+</div>
+
+
+<main id="userContent" style="display:none;">
+  <header>
+    <h1>Alerta Cidadão - Usuário</h1>
+    <span id="clock"></span>
+    <button class="btn teal" onclick="showCartilha()">📄 Cartilha</button>
+  </header>
+
+  <div class="container">
+    <div class="left">
+      <label>Seu nome:</label>
+      <input id="userName" placeholder="Nome completo">
+      
+      <div class="quick-links">
+        <button class="btn teal" onclick="callNumber('180')">📞 Ligar 180</button>
+        <button class="btn teal" onclick="callNumber('190')">📞 Polícia</button>
+        <button class="btn teal" onclick="callNumber('192')">📞 SAMU</button>
+      </div>
+
+      <div class="alerts">
+        <button class="btn danger" onclick="sendAlert('Pânico')">🚨 Pânico</button>
+        <button class="btn yellow" onclick="sendAlert('Acidente')">⚠️ Acidente</button>
+        <button class="btn blue" onclick="sendAlert('Suspeito')">👤 Suspeito</button>
+        <button class="btn green" onclick="sendAlert('Médica')">⛑️ Médica</button>
+      </div>
+
+      <div class="export">
+        <button class="btn small" onclick="exportCSV()">⬇️ Exportar histórico</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <div id="map" class="map"></div>
+      <h3>Histórico</h3>
+      <div id="history" class="history">Nenhum alerta ainda.</div>
+    </div>
+  </div>
+</main>
+
+
+<div id="policeContent" style="display:none;">
+  <div class="login-box">
+    <h3>Login Polícia</h3>
+    <input id="policeUser" placeholder="Usuário">
+    <input id="policePass" type="password" placeholder="Senha">
+    <button class="btn blue" onclick="loginPolice()">Entrar</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+  <div id="policeDashboard" style="display:none; padding:12px;">
+    <h3>Policial</h3>
+    <div id="policeAlerts" class="history"></div>
+  </div>
+</div>
+<div id="cartilhaModal" class="modal" role="dialog" aria-labelledby="cartilhaTitle" aria-hidden="true">
+  <div class="modal-inner">
+   
+    <button class="modal-close" onclick="closeCartilha()" aria-label="Fechar modal">❌</button>
+    
+    <h3 id="cartilhaTitle">Área da Mulher — Apoio e Proteção</h3>
+    
+    <section class="cartilha-section">
+      <h4>📖 Cartilha oficial</h4>
+      <a href="CARTILHA VOLTADA PARA AS VTIMAS 21-07-20.pdf" target="_blank">Abrir cartilha (PDF)</a>
+    </section>
+
+    <section class="cartilha-section">
+      <h4>📞 Telefones úteis</h4>
+      <ul>
+        <li><a href="tel:180"><strong>180</strong> — Central de Atendimento à Mulher</a></li>
+        <li><a href="tel:190"><strong>190</strong> — Polícia Militar (em caso de emergência)</a></li>
+        <li><a href="tel:100"><strong>Disque 100</strong> — Direitos Humanos</a></li>
+      </ul>
+    </section>
+
+    <section class="cartilha-section">
+      <h4>👮 Delegacias da Mulher</h4>
+      <p>Procure a Delegacia de Defesa da Mulher mais próxima:</p>
+      <ul>
+        <li><strong>São Paulo (capital):</strong> (11) 3101-0184</li>
+        <li><strong>Rio de Janeiro:</strong> (21) 2334-8823</li>
+        <li><strong>Belo Horizonte:</strong> (31) 3335-6666</li>
+        <li><a href="https://www.gov.br/mdh/pt-br/assuntos/noticias/2020/julho/delegacias-especializadas-de-atendimento-a-mulheres" target="_blank">Ver lista completa</a></li>
+      </ul>
+
+     
+      <div id="mapDelegacias" class="map" style="height:250px; margin-top:10px;"></div>
+    </section>
+
+    <section class="cartilha-section">
+      <h4>💬 Apoio psicológico e jurídico</h4>
+      <p>Você pode buscar ajuda em Centros de Referência da Mulher, Defensorias Públicas e ONGs de atendimento.</p>
+    </section>
+
+    <br>
+    <button class="btn teal" onclick="closeCartilha()">Fechar</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
