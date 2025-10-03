@@ -3,7 +3,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(135deg, #0b1220, #1a2238);
   color: #e4e6eb;
-    flex-wrap: wrap;
+
 }
 
 header {
@@ -13,6 +13,7 @@ header {
   padding: 12px 16px;
   background: #0a0f14;
   box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    flex-wrap: wrap;
 }
 
 header h1 {
@@ -208,4 +209,5 @@ header .controls {
   margin: 4px 0;
   font-weight: 600;
 }
+
 
