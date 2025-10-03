@@ -34,6 +34,7 @@ body.dark-mode {
     background-color: var(--header-bg-light);
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     transition: background-color 0.3s;
+    flex-wrap: wrap;
 }
 
 body.dark-mode .main-header {
@@ -344,3 +345,4 @@ W-section a {
 .modal-inner .btn:hover {
   background: #553399;
 }
+
